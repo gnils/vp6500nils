@@ -27,11 +27,9 @@ int main(void)
 	int r255, g255, b255;
     short color;
 
-    //bmp->Width
-
-	for(x = 0; x < 240; x++)
+	for(x = 0; x < bmp->Height; x++)
 	{
-		for(y = 0; y < 220; y++)
+		for(y = 0; y < bmp->Width; y++)
 		{
 		    RGBApixel rgba = bmp->GetPixel(x, y);
 
