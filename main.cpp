@@ -21,7 +21,7 @@ int main(void)
 
 	bmp->ReadFromFile("cube.bmp");
 
-    short r,g,b;
+    //short r,g,b;
     short color;
     RGBApixel rgba;
 
@@ -34,9 +34,9 @@ int main(void)
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            color = floor((float)(rgba.Red)/255.0f*31.0f);
-            color |= floor((float)(rgba.Green)/255.0f*63.0f) << 6;
-            color |= floor((float)(rgba.Blue)/255.0f*31.0f) << 11;
+            color = (int)((float)(rgba.Red)/255.0f*31.0f);
+            color |= (int)((float)(rgba.Green)/255.0f*63.0f) << 6;
+            color |= (int)((float)(rgba.Blue)/255.0f*31.0f) << 11;
 
 
 			fb[240 * y + x] = color;
