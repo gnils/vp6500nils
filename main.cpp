@@ -33,9 +33,9 @@ int main(void)
 		{
 		    rgba = bmp->GetPixel(x, y);
 
-            r255 = (int)(rgba.Red);
-            g255 = (int)(rgba.Green);
-            b255 = (int)(rgba.Blue);
+            r255 = (rgba.Red);
+            g255 = (rgba.Green);
+            b255 = (rgba.Blue);
 
 
             if(r255 > 255)
@@ -48,9 +48,9 @@ int main(void)
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = floor(((double)(r255))/255.0*31.0);
-            g = floor(((double)(g255))/255.0*63.0);
-            b = floor(((double)(b255))/255.0*31.0);
+            r = (int)(((double)(r255))/255.0*31.0);
+            g = (int)(((double)(g255))/255.0*63.0);
+            b = (int)(((double)(b255))/255.0*31.0);
 
             color = 0;
 
