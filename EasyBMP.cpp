@@ -112,12 +112,12 @@ void BMFH::display( void )
 }
 
 /* These functions are defined in EasyBMP_BMP.h */
-void GenerateShortArray()
+void BMP::GenerateShortArray()
 {
     short c;
     RGBApixel rgba;
 
-    this->Color = new short[9504000];
+    BMP::Color = new short[9504000];
 
 	for(short x = 0; x < bmp->Width; x++)
 	{
