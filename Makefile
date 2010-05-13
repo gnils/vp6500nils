@@ -26,19 +26,19 @@ ASFLAGS=$(CPUFLAGS) -D --gstabs
 ROMLDFLAGS=-lc -s -Wl,-warn-common -helloworld.map
 THUMBFLAGS=
 
-PROJECT=helloworld
+PROJECT=vp6500nils
 
 -include Makefile.local
 
 all: $(PROJECT)
 
-$(PROJECT): main.o
-	$(LD) $(ROMLDFLAGS) -o $(PROJECT) main.o
+$(PROJECT): main.o EasyBMP.o
+	$(CPP) $(ROMLDFLAGS) -o $(PROJECT) main.o EasyBMP.o
 
-main.o: main.cpp
+main.o:
 	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o main.o main.cpp
 
-EasyBMP.o: EasyBMP.cpp
+EasyBMP.o:
 	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o EasyBMP.o EasyBMP.cpp
 
 
