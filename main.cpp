@@ -21,7 +21,6 @@ int main(void)
 
 	bmp->ReadFromFile("cube.bmp");
 
-
 	int x,y;
     int r,g,b;
 	int r255, g255, b255;
@@ -34,9 +33,9 @@ int main(void)
 		{
 		    rgba = bmp->GetPixel(x, y);
 
-            r255 = (int)(rgba.Green);
-            g255 = (int)(rgba.Blue);
-            b255 = (int)(rgba.Red);
+            r255 = (int)(rgba.Red);
+            g255 = (int)(rgba.Green);
+            b255 = (int)(rgba.Blue);
 
 
             if(r255 > 255)
