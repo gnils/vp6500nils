@@ -27,9 +27,9 @@ int main(void)
     int r255, g255, b255;
     short color;
 
-	for(x = 0; x < 180; x+=1)
+	for(x = 0; x < 240; x+=1)
 	{
-		for(y = 0; y < 220; y+=1)
+		for(y = 0; y < 180; y+=1)
 		{
 		    RGBApixel rgba = bmp->GetPixel(x, y);
 
@@ -42,9 +42,9 @@ int main(void)
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = (int)(((double)(r255)/255.0*31.0));
-            g = (int)(((double)(g255)/255.0*63.0));
-            b = (int)(((double)(b255)/255.0*31.0));
+            r = (int)(floor(((double)(r255))/255.0*31.0));
+            g = (int)(floor(((double)(g255))/255.0*63.0));
+            b = (int)(floor(((double)(b255))/255.0*31.0));
 
             color = 0;
 
@@ -56,7 +56,7 @@ int main(void)
             color |= g << 6;
             color |= r << 11;
 
-			fb[180 * y + x] = color;
+			fb[240 * y + x] = color;
 		}
 	}
 
