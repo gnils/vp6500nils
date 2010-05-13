@@ -28,9 +28,9 @@ int main(void)
     short color;
     RGBApixel rgba;
 
-	for(x = 0; x < bmp->Height; x++)
+	for(x = 0; x < bmp->Width; x++)
 	{
-		for(y = 0; y < bmp->Width; y++)
+		for(y = 0; y < bmp->Height; y++)
 		{
 		    rgba = bmp->GetPixel(x, y);
 
