@@ -22,7 +22,8 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-    fd = open("/dev/sensor", O_RDWR);
+    int fd = open("/dev/sensor", O_RDWR);
+
     if(fd == -1)
     {
         printf("can't open /dev/sensor\r\n");
