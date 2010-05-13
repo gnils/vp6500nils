@@ -35,8 +35,8 @@ int main(void)
 		{
 		    RGBApixel rgba = bmp->GetPixel(x, y);
 
-            r255 = (int)(rgba.Red)
-            g255 = (int)(rgba.Green)
+            r255 = (int)(rgba.Red);
+            g255 = (int)(rgba.Green);
             b255 = (int)(rgba.Blue);
 
 
