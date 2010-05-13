@@ -606,6 +606,7 @@ bool BMP::WriteToFile( const char* FileName )
   ebmpWORD BlueMask = 31;    // bits 12-16
   ebmpWORD GreenMask = 2016; // bits 6-11
   ebmpWORD RedMask = 63488;  // bits 1-5
+  ebmpWORD ZeroWORD;
 
   if( IsBigEndian() )
   { RedMask = FlipWORD( RedMask ); }
@@ -990,6 +991,7 @@ bool BMP::ReadFromFile( const char* FileName )
    // read the three bit masks
 
    ebmpWORD TempMaskWORD;
+   ebmpWORD ZeroWORD;
 
    SafeFread( (char*) &RedMask , 2 , 1 , fp );
    if( IsBigEndian() )
