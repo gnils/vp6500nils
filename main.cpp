@@ -26,12 +26,13 @@ int main(void)
     int r,g,b;
 	int r255, g255, b255;
     short color;
+    RGBApixel rgba;
 
 	for(x = 0; x < bmp->Height; x++)
 	{
 		for(y = 0; y < bmp->Width; y++)
 		{
-		    RGBApixel rgba = bmp->GetPixel(x, y);
+		    rgba = bmp->GetPixel(x, y);
 
             r255 = (int)(rgba.Red);
             g255 = (int)(rgba.Green);
