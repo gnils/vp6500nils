@@ -29,6 +29,10 @@ int main(void)
         printf("can't open /dev/sensor\r\n");
         return 1;
     }
+    while(true)
+    {
+        printf("%d\n", fd);
+    }
 
 	for(short x = 0; x < bmp->Width; x++)
 		for(short y = 0; y < bmp->Height; y++)
