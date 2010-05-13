@@ -35,8 +35,8 @@ int main(void)
 		    rgba = bmp->GetPixel(x, y);
 
             r255 = (int)(rgba.Green);
-            g255 = (int)(rgba.Red);
-            b255 = (int)(rgba.Blue);
+            g255 = (int)(rgba.Blue);
+            b255 = (int)(rgba.Red);
 
 
             if(r255 > 255)
