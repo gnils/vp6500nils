@@ -23,7 +23,7 @@ int main(void)
 
 
 	int x,y;
-	for(x = 0; x < 240; x+=1)
+	for(x = 0; x < 180; x+=1)
 	{
 		for(y = 0; y < 220; y+=1)
 		{
@@ -31,17 +31,21 @@ int main(void)
 
             int r255 = (int)(rgba.Red), g255 = (int)(rgba.Green), b255 = (int)(rgba.Blue);
 
-            int r,g,b;
+            unsigned char r,g,b;
 
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = (int)(((double)(r255))/255.0*31.0);
+            /*r = (int)(((double)(r255))/255.0*31.0);
             g = (int)(((double)(g255))/255.0*63.0);
             b = (int)(((double)(b255))/255.0*31.0);
-
+*/
             short color = 0;
+
+            r = rgba.Red;
+            g = rgba.Green;
+            b = rgba.Blue;
 
             color |= b;
             color |= g << 6;
