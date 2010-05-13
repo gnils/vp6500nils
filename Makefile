@@ -32,12 +32,14 @@ PROJECT=vp6500nils
 
 all: $(PROJECT)
 
-$(PROJECT): main.o
-	$(CPP) $(ROMLDFLAGS) -o $(PROJECT) main.o
+$(PROJECT): main.o EasyBMP.o
+	$(CPP) $(ROMLDFLAGS) -o $(PROJECT) main.o EasyBMP.o
 
 main.o:
 	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o main.o main.cpp
 
+EasyBMP.o:
+	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o EasyBMP.o EasyBMP.cpp
 
 
 clean:
