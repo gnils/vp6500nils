@@ -23,16 +23,29 @@ int main(void)
 
 
 	int x,y;
-	for(x = 0; x < 240; x+=1)
+    int r,g,b;
+	int r255, g255, b255;
+    short color;
+
+    //bmp->Width
+
+	for(x = 0; x < 240; x++)
 	{
-		for(y = 0; y < 180; y+=1)
+		for(y = 0; y < 220; y++)
 		{
 		    RGBApixel rgba = bmp->GetPixel(x, y);
 
-            int r255 = (int)(rgba.Red), g255 = (int)(rgba.Green), b255 = (int)(rgba.Blue);
+            r255 = (int)(rgba.Red)
+            g255 = (int)(rgba.Green)
+            b255 = (int)(rgba.Blue);
 
-            int r,g,b;
 
+            if(r255 > 255)
+                printf("RED %d\n", r255);
+            if(g255 > 255)
+                printf("GREEN %d\n", g255);
+            if(b255 > 255)
+                printf("BLUE %d\n", b255);
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
@@ -41,7 +54,7 @@ int main(void)
             g = (int)(((double)(g255))/255.0*63.0);
             b = (int)(((double)(b255))/255.0*31.0);
 
-            short color = 0;
+            color = 0;
 
             color |= b;
             color |= g << 6;
