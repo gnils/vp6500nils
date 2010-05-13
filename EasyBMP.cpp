@@ -116,22 +116,22 @@ void BMP::GenerateShortArray()
 {
     short c;
 
-    BMP::Color = new short[9504000];
+    BMP::Color = new short[39600];
 
 	for(short x = 0; x < BMP::Width; x++)
 	{
 		for(short y = 0; y < BMP::Height; y++)
 		{
-		    if(240 * y + x >= 9504000)
+		    if(240 * y + x >= 39600)
                 continue;
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
             c = 0;
 
-            c = (int)((float)(BMP::Pixels[x][y].Red)/255.0f*31.0f);
+            c = (int)((float)(BMP::Pixels[x][y].Blue)/255.0f*31.0f);
             c |= (int)((float)(BMP::Pixels[x][y].Green)/255.0f*63.0f) << 6;
-            c |= (int)((float)(BMP::Pixels[x][y].Blue)/255.0f*31.0f) << 11;
+            c |= (int)((float)(BMP::Pixels[x][y].Red)/255.0f*31.0f) << 11;
 
 			Color[240 * y + x] = c;
 		}
