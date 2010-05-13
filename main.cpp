@@ -34,16 +34,16 @@ int main(void)
 		{
 		    rgba = bmp->GetPixel(x, y);
 
-            r255 = (int)(rgba.Green);
-            g255 = (int)(rgba.Blue);
+            r255 = (int)(rgba.Blue);
+            g255 = (int)(rgba.Green);
             b255 = (int)(rgba.Red);
 
 
-            if(r255 > 255)
+            if(r255 > 128)
                 printf("RED %d\n", r255);
-            if(g255 > 255)
+            if(g255 > 128)
                 printf("GREEN %d\n", g255);
-            if(b255 > 255)
+            if(b255 > 128)
                 printf("BLUE %d\n", b255);
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
