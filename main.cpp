@@ -23,20 +23,15 @@ int main(void)
 
 
 	int x,y;
-    unsigned char r,g,b;
-    int r255, g255, b255;
-    short color;
-
-	for(x = 0; x < 180; x+=1)
+	for(x = 0; x < 240; x+=1)
 	{
-		for(y = 0; y < 240; y+=1)
+		for(y = 0; y < 180; y+=1)
 		{
 		    RGBApixel rgba = bmp->GetPixel(x, y);
 
-            r255 = (int)(rgba.Red);
-            g255 = (int)(rgba.Green);
-            b255 = (int)(rgba.Blue);
+            int r255 = (int)(rgba.Red), g255 = (int)(rgba.Green), b255 = (int)(rgba.Blue);
 
+            int r,g,b;
 
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
@@ -46,11 +41,7 @@ int main(void)
             g = (int)(((double)(g255))/255.0*63.0);
             b = (int)(((double)(b255))/255.0*31.0);
 
-            color = 0;
-
-            r = rgba.Red;
-            g = rgba.Green;
-            b = rgba.Blue;
+            short color = 0;
 
             color |= b;
             color |= g << 6;
