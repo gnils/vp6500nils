@@ -17,7 +17,7 @@ int main(void)
 	short* fb = (short*) fb_void;
 
 
-	BMP bmp = new BMP();
+	BMP *bmp = new BMP();
 
 	bmp->ReadFromFile("cube.bmp");
 
@@ -29,7 +29,7 @@ int main(void)
 		{
 		    RGBApixel rgba = bmp->GetPixel(x, y);
 
-            int r255 = (int)(rgba->Red), g255 = (int)(rgba->Green), b255 = (int)(rgba->Blue);
+            int r255 = (int)(rgba.Red), g255 = (int)(rgba.Green), b255 = (int)(rgba.Blue);
 
             int r,g,b;
 
