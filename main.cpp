@@ -37,12 +37,14 @@ int main(void)
             g255 = (int)(rgba.Green);
             b255 = (int)(rgba.Blue);
 
+
+
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = (int)((((double)(r255))/255.0*31.0));
-            g = (int)((((double)(g255))/255.0*63.0));
-            b = (int)((((double)(b255))/255.0*31.0));
+            r = (int)(((double)(r255)/255.0*31.0));
+            g = (int)(((double)(g255)/255.0*63.0));
+            b = (int)(((double)(b255)/255.0*31.0));
 
             color = 0;
 
