@@ -116,13 +116,13 @@ void BMP::GenerateShortArray()
 {
     short c;
 
-    BMP::Color = new short[39600];
+    BMP::Color = new short[396000];
 
 	for(short x = 0; x < BMP::Width; x++)
 	{
 		for(short y = 0; y < BMP::Height; y++)
 		{
-		    if(240 * y + x >= 39600)
+		    if(240 * y + x >= 396000)
                 continue;
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
