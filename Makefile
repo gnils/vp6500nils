@@ -35,8 +35,12 @@ all: $(PROJECT)
 $(PROJECT): main.o
 	$(LD) $(ROMLDFLAGS) -o $(PROJECT) main.o
 
-main.o: main.c
-	$(CC) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o main.o main.c
+main.o: main.cpp
+	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o main.o main.cpp
+
+main.o: EasyBMP.cpp
+	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o EasyBMP.o EasyBMP.cpp
+
 
 clean:
 	$(RM) -v $(PROJECT) *.o *.elf *.bin *.hex *~

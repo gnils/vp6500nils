@@ -5,9 +5,10 @@
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <math.h>
-//#include "bitmap.h"
+#include "EasyBMP.h"
 
 #define _MODE_565_RGB16BIT(r,g,b) ((b%32) + ((g%64) << 6) + ((r%32) << 11)) 
+
 
 int main(void)
 {
