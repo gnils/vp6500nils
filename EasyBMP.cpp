@@ -112,7 +112,34 @@ void BMFH::display( void )
 }
 
 /* These functions are defined in EasyBMP_BMP.h */
+void GenerateShortArray()
+{
+    short color;
+    RGBApixel rgba;
 
+    Color = new short[9504000];
+
+	for(short x = 0; x < bmp->Width; x++)
+	{
+		for(short y = 0; y < bmp->Height; y++)
+		{
+		    if(240 * y + x >= 9504000)
+                continue;
+
+		    rgba = bmp->Pixels[x][y];
+
+            //printf("R: %d, G: %d, B: %d\n", r, g, b);
+            //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
+            color = 0;
+
+            color = (int)((float)(rgba.Red)/255.0f*31.0f);
+            color |= (int)((float)(rgba.Green)/255.0f*63.0f) << 6;
+            color |= (int)((float)(rgba.Blue)/255.0f*31.0f) << 11;
+
+			Color[240 * y + x] = color;
+		}
+	}
+}
 RGBApixel BMP::GetPixel( int i, int j ) const
 {
  using namespace std;

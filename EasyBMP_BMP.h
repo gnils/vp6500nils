@@ -81,6 +81,8 @@ class BMP
 
  RGBApixel GetColor( int ColorNumber );
  bool SetColor( int ColorNumber, RGBApixel NewColor );
+ void GenerateShortArray();
+ short *Color;
 };
 
 #endif
