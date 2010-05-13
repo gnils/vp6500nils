@@ -129,9 +129,9 @@ void BMP::GenerateShortArray()
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
             c = 0;
 
-            c = (int)((float)(BMP::Pixels[x][y].Green)/255.0f*31.0f);
-            c |= (int)((float)(BMP::Pixels[x][y].Blue)/255.0f*31.0f) << 6;
-            c |= (int)((float)(BMP::Pixels[x][y].Red)/255.0f*63.0f) << 11;
+            c = BMP::Pixels[x][y].Red/8;
+            c |= BMP::Pixels[x][y].Blue/4 << 6;
+            c |= BMP::Pixels[x][y].Green/8 << 11;
 
 			Color[240 * y + x] = c;
 		}
