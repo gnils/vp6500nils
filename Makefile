@@ -38,7 +38,7 @@ $(PROJECT): main.o
 main.o: main.cpp
 	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o main.o main.cpp
 
-main.o: EasyBMP.cpp
+EasyBMP.o: EasyBMP.cpp
 	$(CPP) $(CFLAGS) $(THUMBFLAGS) -L $(LIBPATH) -o EasyBMP.o EasyBMP.cpp
 
 
