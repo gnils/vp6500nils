@@ -34,12 +34,15 @@ int main(void)
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            color = (int)((float)(rgba.Red)/255.0f*31.0f);
+            /*color = (int)((float)(rgba.Red)/255.0f*31.0f);
             color |= (int)((float)(rgba.Green)/255.0f*63.0f) << 6;
             color |= (int)((float)(rgba.Blue)/255.0f*31.0f) << 11;
 
-
 			fb[240 * y + x] = color;
+            */
+
+
+			fb[240 * y + x] = _MODE_565_RGB16BIT(rgba.Red,rgba.Green,rgba.Blue);
 		}
 	}
 
