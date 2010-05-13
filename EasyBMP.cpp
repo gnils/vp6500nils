@@ -130,8 +130,8 @@ void BMP::GenerateShortArray()
             c = 0;
 
             c = (int)((float)(BMP::Pixels[x][y].Green)/255.0f*31.0f);
-            c |= (int)((float)(BMP::Pixels[x][y].Red)/255.0f*63.0f) << 6;
-            c |= (int)((float)(BMP::Pixels[x][y].Blue)/255.0f*31.0f) << 11;
+            c |= (int)((float)(BMP::Pixels[x][y].Blue)/255.0f*63.0f) << 6;
+            c |= (int)((float)(BMP::Pixels[x][y].Red)/255.0f*31.0f) << 11;
 
 			Color[240 * y + x] = c;
 		}
