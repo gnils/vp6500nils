@@ -21,28 +21,23 @@ int main(void)
 
 	bmp->ReadFromFile("cube.bmp");
 
-    int r,g,b;
+    short r,g,b;
     short color;
     RGBApixel rgba;
 
-	for(int x = 0; x < bmp->Width; x++)
+	for(short x = 0; x < bmp->Width; x++)
 	{
-		for(int y = 0; y < bmp->Height; y++)
+		for(short y = 0; y < bmp->Height; y++)
 		{
 		    rgba = bmp->Pixels[x][y];
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = floor((double)(rgba.Red)/255.0*31.0);
-            g = floor((double)(rgba.Green)/255.0*63.0);
-            b = floor((double)(rgba.Blue)/255.0*31.0);
+            color = floor((float)(rgba.Red)/255.0f*31.0f);
+            color |= floor((float)(rgba.Green)/255.0f*63.0f) << 6;
+            color |= floor((float)(rgba.Blue)/255.0f*31.0f) << 11;
 
-            color = 0;
-
-            color |= b;
-            color |= g << 6;
-            color |= r << 11;
 
 			fb[240 * y + x] = color;
 		}
