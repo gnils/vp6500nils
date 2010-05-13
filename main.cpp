@@ -31,26 +31,14 @@ int main(void)
 	{
 		for(y = 0; y < bmp->Height; y++)
 		{
-		    rgba = bmp->GetPixel(x, y);
-
-            r255 = (rgba.Red);
-            g255 = (rgba.Green);
-            b255 = (rgba.Blue);
-
-
-            if(r255 > 255)
-                printf("RED %d\n", r255);
-            if(g255 > 255)
-                printf("GREEN %d\n", g255);
-            if(b255 > 255)
-                printf("BLUE %d\n", b255);
+		    rgba = bmp->Pixels[x][y]
 
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = (int)(((double)(r255))/255.0*31.0);
-            g = (int)(((double)(g255))/255.0*63.0);
-            b = (int)(((double)(b255))/255.0*31.0);
+            r = (int)(rgba.Red/255.0*31.0);
+            g = (int)(rgba.Green)/255.0*63.0);
+            b = (int)(rgba.Blue)/255.0*31.0);
 
             color = 0;
 
