@@ -34,9 +34,9 @@ int main(void)
             //printf("R: %d, G: %d, B: %d\n", r, g, b);
             //printf("R: %d, G: %d, B: %d\n", r255, g255, b255);
 
-            r = floor(rgba.Red/255.0*31.0);
-            g = floor(rgba.Green)/255.0*63.0);
-            b = floor(rgba.Blue)/255.0*31.0);
+            r = floor((double)(rgba.Red)/255.0*31.0);
+            g = floor((double)(rgba.Green)/255.0*63.0);
+            b = floor((double)(rgba.Blue)/255.0*31.0);
 
             color = 0;
 
