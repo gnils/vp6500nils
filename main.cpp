@@ -104,7 +104,7 @@ int main(void)
     {
         while(true)
         {
-            key_value %= 100;
+            key_value %= 1000;
             read(buttons_fd, &key_value, sizeof key_value);
 
             if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
