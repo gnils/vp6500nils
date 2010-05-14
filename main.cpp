@@ -49,6 +49,11 @@ int main(void)
 	void* fb_void = mmap(0, 2*240*220, PROT_WRITE, MAP_SHARED , fb_nr, 0);
 	short* fb = (short*) fb_void;
 
+    short* before = new short[396000];
+    for(int i = 0; i < 180; i++)
+        for(int j = 0; j < 220; j++)
+            before[240*j + i] = fb[240*j + i];
+
     printf("Opening device: Buttons...\n");
 
 	int buttons_fd= open("/dev/buttons", O_RDWR | O_NONBLOCK);
@@ -135,6 +140,10 @@ int main(void)
     }
 
     printf("Closing...\n");
+
+    for(int i = 0; i < 180; i++)
+        for(int j = 0; j < 220; j++)
+            fb[240*j + i] = before[240*j + i];
 
 	close(buttons_fd);
 	close(fb_nr);
