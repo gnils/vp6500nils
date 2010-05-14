@@ -112,14 +112,11 @@ int main(void)
                     fb[240*j + i] = bg->Color[240*j + i];
             }
 
-
+/*
 
         key_value %= 100;
-        printf("select", yPos);
         select(buttons_fd + 1, &rds, NULL, NULL, NULL);
-        printf("read", yPos);
         read(buttons_fd, &key_value, sizeof key_value);
-        printf("done", yPos);
 
         if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
             yPos += 10;
@@ -132,7 +129,7 @@ int main(void)
 
         if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
             break;
-
+*/
 
 
 	}
