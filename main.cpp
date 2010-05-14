@@ -112,6 +112,8 @@ int main(void)
             key_value %= 1000;
             read(buttons_fd, &key_value, sizeof key_value);
 
+            printf("Button pressed:%d\n", key_value);
+
             if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
                 yPos += 1;
 
