@@ -96,11 +96,11 @@ int main(void)
 
     int xPos = 150;
     int yPos = 0;
-
+select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
 	while(true)
 	{
-        yPos += 10;
+        yPos += 1;
         printf("%d\n", yPos);
 
         for(int i = 0; i < 180; i++)
@@ -112,10 +112,10 @@ int main(void)
                     fb[240*j + i] = bg->Color[240*j + i];
             }
 
-/*
+
 
         key_value %= 100;
-        select(buttons_fd + 1, &rds, NULL, NULL, NULL);
+
         read(buttons_fd, &key_value, sizeof key_value);
 
         if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
@@ -129,7 +129,7 @@ int main(void)
 
         if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
             break;
-*/
+
 
 
 	}
