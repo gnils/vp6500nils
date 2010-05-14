@@ -34,7 +34,7 @@
 #define BTN_QUIT 33752
 
 #define BTN_NUMBER(x) (x-33666+1)
-#define BTN_NUMBER_ZERO 33657
+#define BTN_NUMBER_ZERO 33675
 
 #define BTN_STAR 33719
 #define BTN_HASH 33748
@@ -73,11 +73,11 @@ int main(void)
 	{
         for(int i = 0; i < 180; i++)
             for(int j = 0; j < 220; j++)
-                fb[240*i + j] = 0;
+                fb[240*j + i] = 0;
 
         for(int i = 0; i < bmp->Width; i++)
             for(int j = 0; j < bmp->Height; j++)
-                fb[240*(i+ offset) + j] = bmp->Color[240*i + j];
+                fb[240*(j+ offset) + i] = bmp->Color[240*j + i];
 
         select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
