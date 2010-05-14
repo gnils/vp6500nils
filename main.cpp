@@ -42,13 +42,11 @@ int button = 4;
 			return(-1);
 		}
 
-		if(btn[4] != 0x30)
-			printf("4\n");
-
-
-
-		if(btn[0] != 0x30)
-			printf("0\n");
+        for(int i = 0; i < 6; i++)
+        {
+                if(btn[i] != 0x30)
+                    printf("%d\n", i);
+        }
 
 	}
 	close(fd);
