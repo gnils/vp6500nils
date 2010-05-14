@@ -26,9 +26,12 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-    char btn[6] = {'0', '0', '0', '0', '0', '0'};
 	int fd = open("/dev/buttons", O_RDWR | O_NONBLOCK);
-	if (fd < 0) { printf("cant open buttons device"); return(-1); }
+	if (fd < 0)
+	{
+        printf("cant open buttons device");
+        return(-1);
+    }
 
 	int status, ret;
 
@@ -41,7 +44,7 @@ int main(void)
             printf("ioctl invalid status\n");
             break;
         }
-        printf("decode status: [P = %x] [CF = %x]\n", GETPENDETECT(status), GETCFDETECT(status));
+        printf("decode status: [P = %d] [CF = %n]\d", GETPENDETECT(status), GETCFDETECT(status));
 
 
         /*for(int i = 0; i < bmp->Width; i++)
