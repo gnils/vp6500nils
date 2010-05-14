@@ -124,7 +124,7 @@ int main(void)
             if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
                 xPos += 1;
 
-            if(key_value == BTN_QUIT)
+            if(key_value == BTN_VIDEO)
                 break;
 
             for(int i = 0; i < 180; i++)
