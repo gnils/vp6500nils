@@ -114,25 +114,25 @@ int main(void)
 
 
 
-        ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
-        //if (FD_ISSET(buttons_fd, &rds))
-        {
-            key_value %= 100;
-            ret = read(buttons_fd, &key_value, sizeof key_value);
+        key_value %= 100;
+        printf("select", yPos);
+        select(buttons_fd + 1, &rds, NULL, NULL, NULL);
+        printf("read", yPos);
+        read(buttons_fd, &key_value, sizeof key_value);
+        printf("done", yPos);
 
-            if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
-                yPos += 10;
+        if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
+            yPos += 10;
 
-            if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
-                xPos -= 10;
+        if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
+            xPos -= 10;
 
-            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
-                xPos += 10;
+        if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
+            xPos += 10;
 
-            if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
-                break;
+        if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
+            break;
 
-        }
 
 
 	}
