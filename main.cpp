@@ -33,7 +33,7 @@ int main(void)
     printf("%d\n", fd);
 
     int result = getc((FILE*)(fd));
-        printf("%d\n", result);
+        printf("%d sd\n", result);
     //while(true)
     //{
     //}
