@@ -23,22 +23,24 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-    FILE* fd = fopen("/dev/buttons", O_RDWR);
+    char btn[6] = {'0', '0', '0', '0', '0', '0'};
+	int fd = open("/dev/buttons", 0);
+	if (fd < 0) { printf("cant open buttons device"); return(-1); }
 
-    if(fd == -1)
-    {
-        printf("can't open /dev/buttons\r\n");
-        return 1;
-    }
-    printf("%d\n", fd);
+	while(btn[button] == 0x30) {	// if a button is released, we read 0x30, if pressed 0x31
+		if (read(fd, btn, sizeof btn) != sizeof btn) {
+			printf("cant read buttons!");
+			close(fd);
+			return(-1);
+		}
+	}
+	close(fd);
 
-    int result = getc(fd);
-        printf("%d sd\n", result);
     //while(true)
     //{
     //}
 
-    fclose(FILE);
+    close(FILE);
 
 	for(short x = 0; x < bmp->Width; x++)
 		for(short y = 0; y < bmp->Height; y++)
