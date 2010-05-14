@@ -62,16 +62,12 @@ int main(void)
         else if (FD_ISSET(buttons_fd, &rds))
         {
             int ret = read(buttons_fd, &key_value, sizeof key_value);
-            if (ret != sizeof key_value)
-            {
-                if (errno != EAGAIN)
-                printf("buttons_value: %d\n", key_value);
-                continue;
-            }
-            else
-            {
-                printf("buttons_value2: %d\n", key_value);
-            }
+
+            int keynr = key_value - 33666 + 1;
+            printf("buttons_value: %d\n", keynr);
+
+            if(keynr == 0)
+                break;
 
         }
 
