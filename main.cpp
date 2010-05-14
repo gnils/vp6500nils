@@ -102,8 +102,8 @@ int main(void)
     key_value %= 1000;
     read(buttons_fd, &key_value, sizeof key_value);
 
-    if(key_value == BTN_OK || key_value == BTN_ACCEPT)
-    {
+    //if(key_value == BTN_OK || key_value == BTN_ACCEPT)
+    //{
         int xPos = 80 - car->Width/2;
         int yPos = 110 - car->Height/2;
 
@@ -139,7 +139,7 @@ int main(void)
 
 
         }
-    }
+    //}
 
     printf("Loading last Screen...\n");
 
