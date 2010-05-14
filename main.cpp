@@ -65,13 +65,12 @@ int main(void)
             if (ret != sizeof key_value)
             {
                 if (errno != EAGAIN)
-                printf("read buttons\n");
                 printf("buttons_value: %d\n", key_value);
                 continue;
             }
             else
             {
-                printf("buttons_value: %d\n", key_value);
+                printf("buttons_value2: %d\n", key_value);
             }
 
         }
