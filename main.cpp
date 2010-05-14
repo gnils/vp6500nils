@@ -13,27 +13,27 @@
 
 #include "EasyBMP.h"
 
-#define BTN_LEFTTOP 88
-#define BTN_RIGHTTOP 30
+#define BTN_LEFTTOP 124
+#define BTN_RIGHTTOP 66
 
-#define BTN_DOWN 72
-#define BTN_UP 67
-#define BTN_LEFT 69
-#define BTN_RIGHT 70
+#define BTN_DOWN 108
+#define BTN_UP 103
+#define BTN_LEFT 105
+#define BTN_RIGHT 106
 
-#define BTN_OK 80
+#define BTN_OK 116
 
-#define BTN_ACCEPT 51
-#define BTN_QUIT 52
+#define BTN_ACCEPT 87
+#define BTN_QUIT 88
 
-#define BTN_NUMBER(x) (x-66+1)
-#define BTN_NUMBER_ZERO 75
+#define BTN_NUMBER(x) (x-1)
+#define BTN_NUMBER_ZERO 11
 
-#define BTN_STAR 19
-#define BTN_HASH 48
+#define BTN_STAR 55
+#define BTN_HASH 84
 
-#define BTN_VIDEO 28
-#define BTN_LOUPE 54
+#define BTN_VIDEO 64
+#define BTN_LOUPE 90
 
 int main(void)
 {
