@@ -38,14 +38,17 @@ int button = 4;
 			return(-1);
 		}
 
-		if(btn[button] != 0x30)
-            x0++;
+		if(btn[4] != 0x30)
+            x0+=5;
 
-        y0++;
 
         for(short x = 0; x < bmp->Width; x++)
             for(short y = 0; y < bmp->Height; y++)
                 fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];
+
+
+		if(btn[0] != 0x30)
+            x0++;
 
 	}
 	close(fd);
