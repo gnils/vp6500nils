@@ -42,12 +42,12 @@ int button = 4;
 			return(-1);
 		}
 
-		if(btn[4] == 0x31)
+		if(btn[4] != 0x30)
 			printf("4\n");
 
 
 
-		if(btn[0] == 0x31)
+		if(btn[0] != 0x30)
 			printf("0\n");
 
 	}
