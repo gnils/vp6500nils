@@ -17,7 +17,6 @@ int main(void)
 	void* fb_void = mmap(0, 2*240*220, PROT_WRITE, MAP_SHARED , fb_nr, 0);
 	short* fb = (short*) fb_void;
 
-int button = 4;
 	BMP *bmp = new BMP();
 
 	bmp->ReadFromFile("cube.bmp");
@@ -26,27 +25,26 @@ int button = 4;
     int x0 = 0, y0 = 0;
 
     char btn[6] = {'0', '0', '0', '0', '0', '0'};
-	int fd = open("/dev/buttons", 0);
+	int fd = open("/dev/buttons", O_RDWR | O_NONBLOCK);
 	if (fd < 0) { printf("cant open buttons device"); return(-1); }
+
+	int status, ret;
 
 	while(true)
 	{
 
-        //for(short x = 0; x < 50; x++)
-        //    for(short y = 0; y < 50; y++)
-        //        fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];	// if a button is released, we read 0x30, if pressed 0x31
-		if (read(fd, btn, sizeof btn) != sizeof btn)
-		{
-			printf("cant read buttons!");
-			close(fd);
-			return(-1);
-		}
-
-        for(int i = 0; i < 6; i++)
+        ret = ioctl(evt_fd, BUTTON_IOCTL_GET_STATUS, &status);
+        if (ret < 0)
         {
-                if(btn[i] != 0x30)
-                    printf("%d\n", i);
+            printf("ioctl invalid status\n");
+            break;
         }
+
+        printf("%d\n", status)
+
+        /*for(int i = 0; i < bmp->Width; i++)
+            for(int j = 0; j < bmp->Height; j++)
+                fb[240*i + j] = bmp->Color[240*i + j];*/
 
 	}
 	close(fd);
