@@ -61,11 +61,11 @@ int main(void)
         }
         else if (FD_ISSET(buttons_fd, &rds))
         {
-            int ret = read(buttons_fd, &key_value, sizeof key_value);
+            read(buttons_fd, &key_value, sizeof key_value);
 
             if(key_value > 33666 - 1)
             {
-                printf("buttons_value: %d\n", keynr);
+                printf("buttons_value: %d\n", key_value);
 
                 // GET THE NUMBER 0-9
                 //int keynr = key_value - 33666 + 1;
