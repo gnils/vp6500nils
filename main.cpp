@@ -94,46 +94,52 @@ int main(void)
     FD_ZERO(&rds);
     FD_SET(buttons_fd, &rds);
 
+    select(buttons_fd + 1, &rds, NULL, NULL, NULL);
+
     int xPos = 150;
     int yPos = 0;
-select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
-	while(true)
-	{
-        yPos += 1;
-        printf("%d\n", yPos);
+    key_value %= 100;
+    read(buttons_fd, &key_value, sizeof key_value);
 
-        for(int i = 0; i < 180; i++)
-            for(int j = 0; j < 220; j++)
-            {
-                if(i >= xPos && i < xPos+cube_red->Width && j >= yPos && j < yPos+cube_red->Height)
-                    fb[240*j + i] = cube_red->Color[240*(j-yPos) + (i-xPos)];
-                else
-                    fb[240*j + i] = bg->Color[240*j + i];
-            }
+    if(key_value == BTN_OK)
+    {
+        while(true)
+        {
+            key_value %= 100;
+            read(buttons_fd, &key_value, sizeof key_value);
 
 
 
-        key_value %= 100;
 
-        read(buttons_fd, &key_value, sizeof key_value);
+            if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
+                yPos += 10;
 
-        if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
-            yPos += 10;
+            if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
+                xPos -= 10;
 
-        if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
-            xPos -= 10;
+            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
+                xPos += 10;
 
-        if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
-            xPos += 10;
-
-        if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
-            break;
+            if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
+                break;
 
 
+            yPos += 1;
+            printf("%d\n", yPos);
 
-	}
+            for(int i = 0; i < 180; i++)
+                for(int j = 0; j < 220; j++)
+                {
+                    if(i >= xPos && i < xPos+cube_red->Width && j >= yPos && j < yPos+cube_red->Height)
+                        fb[240*j + i] = cube_red->Color[240*(j-yPos) + (i-xPos)];
+                    else
+                        fb[240*j + i] = bg->Color[240*j + i];
+                }
 
+
+        }
+    }
     printf("Closing...\n");
 
 	close(buttons_fd);
