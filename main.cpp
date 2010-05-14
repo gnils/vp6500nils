@@ -120,6 +120,7 @@ int main(void)
             ret = read(buttons_fd, &key_value, sizeof key_value);
 
 
+    printf("%d\n",key_value);
             if(key_value == BTN_DOWN)
                 yPos += 10;
 
