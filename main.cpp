@@ -26,7 +26,7 @@
 #define BTN_ACCEPT 87
 #define BTN_QUIT 88
 
-#define BTN_NUMBER(x) (x-1)
+#define BTN_NUMBER(x) (x+1)
 #define BTN_NUMBER_ZERO 11
 
 #define BTN_STAR 55
