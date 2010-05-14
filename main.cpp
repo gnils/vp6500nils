@@ -30,7 +30,11 @@ int button = 4;
 	if (fd < 0) { printf("cant open buttons device"); return(-1); }
 
 	while(true)
-	{	// if a button is released, we read 0x30, if pressed 0x31
+	{
+
+        for(short x = 0; x < bmp->Width; x++)
+            for(short y = 0; y < bmp->Height; y++)
+                fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];	// if a button is released, we read 0x30, if pressed 0x31
 		if (read(fd, btn, sizeof btn) != sizeof btn)
 		{
 			printf("cant read buttons!");
@@ -38,13 +42,9 @@ int button = 4;
 			return(-1);
 		}
 
-		if(btn[4] != 0x31)
+		if(btn[4] == 0x31)
             x0+=5;
 
-
-        for(short x = 0; x < bmp->Width; x++)
-            for(short y = 0; y < bmp->Height; y++)
-                fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];
 
 
 		if(btn[0] == 0x31)
