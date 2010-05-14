@@ -31,7 +31,7 @@ int button = 4;
 
 	while(true)
 	{	// if a button is released, we read 0x30, if pressed 0x31
-		if (read(fd, btn, sizeof btn) != sizeof btn
+		if (read(fd, btn, sizeof btn) != sizeof btn)
 		{
 			printf("cant read buttons!");
 			close(fd);
