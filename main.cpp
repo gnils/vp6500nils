@@ -92,6 +92,8 @@ int main(void)
     fd_set rds;
     int key_value;
 
+    FD_ZERO(&rds);
+    FD_SET(buttons_fd, &rds);
 
     int xPos = 150;
     int yPos = 0;
@@ -99,8 +101,6 @@ int main(void)
 
 	while(true)
 	{
-        FD_ZERO(&rds);
-        FD_SET(buttons_fd, &rds);
 
         for(int i = 0; i < 180; i++)
             for(int j = 0; j < 220; j++)
@@ -114,10 +114,10 @@ int main(void)
 
         yPos += 10;
 
-        select(buttons_fd + 1, &rds, NULL, NULL, NULL);
+        ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
         if (FD_ISSET(buttons_fd, &rds))
         {
-            read(buttons_fd, &key_value, sizeof key_value);
+            ret = read(buttons_fd, &key_value, sizeof key_value);
 
 
             if(key_value == BTN_DOWN)
