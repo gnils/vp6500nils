@@ -124,7 +124,7 @@ int main(void)
                 for(int j = 0; j < 220; j++)
                 {
                     if((i >= xPos && i < xPos+car->Width && j >= yPos && j < yPos+car->Height) &&
-                        car_mask->Color[240*(j-yPos) + (i-xPos) != 0])
+                        car_mask->Color[240*(j-yPos) + (i-xPos)] != 0)
                     )
                         fb[240*j + i] = car->Color[240*(j-yPos) + (i-xPos)];
                     else
