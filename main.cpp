@@ -89,14 +89,14 @@ int main(void)
 
     select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
-    int xPos = 80-cube_red->Width/2;
-    int yPos = 110-cube_red->Height/2;
-
     key_value %= 1000;
     read(buttons_fd, &key_value, sizeof key_value);
 
     if(key_value == BTN_OK || key_value == BTN_ACCEPT)
     {
+        int xPos = 80 - car->Width/2;
+        int yPos = 110 - car->Height/2;
+
         while(true)
         {
             key_value %= 1000;
