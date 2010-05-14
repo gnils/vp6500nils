@@ -77,7 +77,7 @@ int main(void)
     for(int i = 0; i < 180; i++)
         for(int j = 0; j < 220; j++)
         {
-            fb[240*j + i] = car->Color[240*j + i];
+            fb[240*j + i] = start->Color[240*j + i];
         }
 
 
@@ -129,9 +129,11 @@ int main(void)
 
         }
     }
+
     printf("Closing...\n");
 
 	close(buttons_fd);
+	close(fb_nr);
 
 
 	return 0;
