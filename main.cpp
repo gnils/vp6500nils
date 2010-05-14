@@ -16,9 +16,9 @@
 #define BTN_LEFTTOP 124
 #define BTN_RIGHTTOP 66
 
-#define BTN_DOWN 105
+#define BTN_DOWN 108
 #define BTN_UP 103
-#define BTN_LEFT 108
+#define BTN_LEFT 105
 #define BTN_RIGHT 106
 
 #define BTN_OK 116
@@ -60,31 +60,26 @@ int main(void)
 
     printf("Loading Bitmaps...\n");
 
-	BMP *cube_red = new BMP();
-	BMP *cube_blue = new BMP();
-	BMP *cube_yellow = new BMP();
-	BMP *cube_green = new BMP();
-	BMP *cube_bam = new BMP();
-
+	BMP *start = new BMP();
+	BMP *car = new BMP();
 	BMP *bg = new BMP();
 
-	cube_red->ReadFromFile("tetris_red.bmp");
-	cube_blue->ReadFromFile("tetris_blue.bmp");
-	cube_yellow->ReadFromFile("tetris_yellow.bmp");
-	cube_green->ReadFromFile("tetris_green.bmp");
-	cube_bam->ReadFromFile("tetris_bam.bmp");
-
+	start->ReadFromFile("start.bmp");
+	car->ReadFromFile("car.bmp");
 	bg->ReadFromFile("bg.bmp");
 
-    cube_red->GenerateShortArray();
-	cube_blue->GenerateShortArray();
-	cube_yellow->GenerateShortArray();
-	cube_green->GenerateShortArray();
-	cube_bam->GenerateShortArray();
-
+    start->GenerateShortArray();
+    car->GenerateShortArray();
 	bg->GenerateShortArray();
 
     printf("Starting MainLoop...\n");
+
+    for(int i = 0; i < 180; i++)
+        for(int j = 0; j < 220; j++)
+        {
+            fb[240*j + i] = car->Color[240*j + i];
+        }
+
 
     fd_set rds;
     int key_value;
@@ -94,10 +89,10 @@ int main(void)
 
     select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
-    int xPos = 80;
-    int yPos = 0;
+    int xPos = 80-cube_red->Width/2;
+    int yPos = 110-cube_red->Height/2;
 
-    key_value %= 100;
+    key_value %= 1000;
     read(buttons_fd, &key_value, sizeof key_value);
 
     if(key_value == BTN_OK || key_value == BTN_ACCEPT)
@@ -122,16 +117,11 @@ int main(void)
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
                 break;
 
-            printf("%d\n",key_value);
-
-            //yPos += 1;
-            //printf("%d\n", yPos);
-
             for(int i = 0; i < 180; i++)
                 for(int j = 0; j < 220; j++)
                 {
-                    if(i >= xPos && i < xPos+cube_red->Width && j >= yPos && j < yPos+cube_red->Height)
-                        fb[240*j + i] = cube_red->Color[240*(j-yPos) + (i-xPos)];
+                    if(i >= xPos && i < xPos+car->Width && j >= yPos && j < yPos+car->Height)
+                        fb[240*j + i] = car->Color[240*(j-yPos) + (i-xPos)];
                     else
                         fb[240*j + i] = bg->Color[240*j + i];
                 }
