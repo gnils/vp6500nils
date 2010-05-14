@@ -44,7 +44,7 @@ int oldret;
             printf("%d\n", ret);
 
 
-        olret = ret;
+        oldret = ret;
 
         /*for(int i = 0; i < bmp->Width; i++)
             for(int j = 0; j < bmp->Height; j++)
