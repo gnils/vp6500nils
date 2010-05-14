@@ -62,14 +62,17 @@ int main(void)
 
 	BMP *start = new BMP();
 	BMP *car = new BMP();
+	BMP *car_mask = new BMP();
 	BMP *bg = new BMP();
 
 	start->ReadFromFile("start.bmp");
 	car->ReadFromFile("car.bmp");
+	car_mask->ReadFromFile("car_mask.bmp");
 	bg->ReadFromFile("bg.bmp");
 
     start->GenerateShortArray();
     car->GenerateShortArray();
+    car_mask->GenerateShortArray();
 	bg->GenerateShortArray();
 
     printf("Starting MainLoop...\n");
@@ -120,7 +123,9 @@ int main(void)
             for(int i = 0; i < 180; i++)
                 for(int j = 0; j < 220; j++)
                 {
-                    if(i >= xPos && i < xPos+car->Width && j >= yPos && j < yPos+car->Height)
+                    if((i >= xPos && i < xPos+car->Width && j >= yPos && j < yPos+car->Height) &&
+                        car_mask->Color[240*(j-yPos) + (i-xPos) == 0];
+                    )
                         fb[240*j + i] = car->Color[240*(j-yPos) + (i-xPos)];
                     else
                         fb[240*j + i] = bg->Color[240*j + i];
