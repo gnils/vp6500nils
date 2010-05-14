@@ -12,6 +12,9 @@
 #define BUTTON_IOCTL_BASE               'b'
 #define BUTTON_IOCTL_GET_STATUS         _IOR( BUTTON_IOCTL_BASE,7,unsigned int)
 
+#define GETCFDETECT  	(  	x   	  	 )   	   ((x&0x400)>>10)
+#define GETPENDETECT  	(  	x   	  	 )   	   ((x&0x100)>>8)
+
 int main(void)
 {
 	int fb_nr = open("/dev/fb", O_RDWR);
@@ -29,7 +32,6 @@ int main(void)
 
 	int status, ret;
 
-int oldret;
 	while(true)
 	{
 
@@ -39,12 +41,8 @@ int oldret;
             printf("ioctl invalid status\n");
             break;
         }
+        printf("decode status: [P = %x] [CF = %x]\n", GETPENDETECT(status), GETCFDETECT(status));
 
-        if(ret != oldret)
-            printf("%d\n", ret);
-
-
-        oldret = ret;
 
         /*for(int i = 0; i < bmp->Width; i++)
             for(int j = 0; j < bmp->Height; j++)
