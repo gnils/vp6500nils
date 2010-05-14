@@ -26,7 +26,7 @@
 #define BTN_ACCEPT 87
 #define BTN_QUIT 88
 
-#define BTN_NUMBER(x) (x+1)
+#define BTN_NUMBER(x) (x-1)
 #define BTN_NUMBER_ZERO 11
 
 #define BTN_STAR 55
@@ -112,8 +112,11 @@ int main(void)
             if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
                 yPos += 1;
 
+            if(key_value == BTN_UP || key_value == BTN_NUMBER(2))
+                yPos -= 1;
+
             if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
-                xPos += 1;
+                xPos -= 1;
 
             if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6)
                 xPos += 1;
@@ -122,8 +125,8 @@ int main(void)
                 break;
 
 
-            yPos += 1;
-            printf("%d\n", yPos);
+            //yPos += 1;
+            //printf("%d\n", yPos);
 
             for(int i = 0; i < 180; i++)
                 for(int j = 0; j < 220; j++)
