@@ -98,13 +98,13 @@ int main(void)
     int yPos = 0;
 
     key_value %= 100;
-    read(buttons_fd, &key_value, sizeof key_value);
 
-    if(key_value == BTN_OK)
+    if(key_value == BTN_OK || key_value == BTN_ACCEPT)
     {
         while(true)
         {
             key_value %= 100;
+    read(buttons_fd, &key_value, sizeof key_value);
             read(buttons_fd, &key_value, sizeof key_value);
 
             if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
