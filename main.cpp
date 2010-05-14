@@ -32,11 +32,11 @@ int main(void)
     }
     printf("%d\n", fd);
 
-    while(true)
-    {
-        int result = getc((FILE*)(fd));
+    int result = getc((FILE*)(fd));
         printf("%d\n", result);
-    }
+    //while(true)
+    //{
+    //}
 
     close(fd);
 
