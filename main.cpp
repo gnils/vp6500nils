@@ -95,6 +95,7 @@ int main(void)
 	while(true)
 	{
         yPos += 10;
+        printf("%d\n", yPos);
 
         for(int i = 0; i < 180; i++)
             for(int j = 0; j < 220; j++)
@@ -112,9 +113,6 @@ int main(void)
         {
             key_value %= 100;
             ret = read(buttons_fd, &key_value, sizeof key_value);
-
-
-            printf("%d\n",key_value);
 
             if(key_value == BTN_DOWN)
                 yPos += 10;
