@@ -87,17 +87,16 @@ int main(void)
         {
             read(buttons_fd, &key_value, sizeof key_value);
 
-            if(key_value == BTN_UP)
-                xPos += 5;
+            yPos += 10;
 
             if(key_value == BTN_DOWN)
-                xPos -= 5;
+                yPos += 10;
 
             if(key_value == BTN_LEFT)
-                yPos += 5;
+                xPos -= 10;
 
             if(key_value == BTN_RIGHT)
-                yPos -= 5;
+                xPos += 10;
 
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
                 break;
