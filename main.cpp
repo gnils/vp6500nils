@@ -36,11 +36,6 @@ int button = 4;
 	}
 	close(fd);
 
-    //while(true)
-    //{
-    //}
-
-    close(FILE);
 
 	for(short x = 0; x < bmp->Width; x++)
 		for(short y = 0; y < bmp->Height; y++)
