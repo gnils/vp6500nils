@@ -29,6 +29,7 @@ int main(void)
 
 	int status, ret;
 
+int oldret;
 	while(true)
 	{
 
@@ -39,7 +40,11 @@ int main(void)
             break;
         }
 
-        printf("%d\n", status);
+        if(ret != oldret)
+            printf("%d\n", ret);
+
+
+        olret = ret;
 
         /*for(int i = 0; i < bmp->Width; i++)
             for(int j = 0; j < bmp->Height; j++)
