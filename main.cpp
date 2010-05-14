@@ -22,7 +22,7 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-    int fd = open("/dev/sensor", O_RDWR);
+    int fd = open("/dev/buttons", O_RDWR);
 
     if(fd == -1)
     {
