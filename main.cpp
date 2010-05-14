@@ -71,6 +71,14 @@ int main(void)
 
 	while(true)
 	{
+        for(int i = 0; i < 180; i++)
+            for(int j = 0; j < 220; j++)
+                fb[240*i + j] = 0;
+
+        for(int i = 0; i < bmp->Width; i++)
+            for(int j = 0; j < bmp->Height; j++)
+                fb[240*(i+ offset) + j] = bmp->Color[240*i + j];
+
         select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
         if (FD_ISSET(buttons_fd, &rds))
@@ -89,10 +97,6 @@ int main(void)
 
         }
 
-
-        for(int i = 0; i < bmp->Width; i++)
-            for(int j = 0; j < bmp->Height; j++)
-                fb[240*i + j + offset] = bmp->Color[240*i + j];
 
 	}
 	close(buttons_fd);
