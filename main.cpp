@@ -51,7 +51,7 @@ int main(void)
         ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
         if (ret < 0)
         {
-            perror("select");
+            printf("select");
             exit(1);
         }
 
@@ -66,6 +66,7 @@ int main(void)
             {
                 if (errno != EAGAIN)
                 printf("read buttons\n");
+                printf("buttons_value: %d\n", key_value);
                 continue;
             }
             else
