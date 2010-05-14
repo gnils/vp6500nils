@@ -32,9 +32,9 @@ int button = 4;
 	while(true)
 	{
 
-        for(short x = 0; x < 50; x++)
-            for(short y = 0; y < 50; y++)
-                fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];	// if a button is released, we read 0x30, if pressed 0x31
+        //for(short x = 0; x < 50; x++)
+        //    for(short y = 0; y < 50; y++)
+        //        fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];	// if a button is released, we read 0x30, if pressed 0x31
 		if (read(fd, btn, sizeof btn) != sizeof btn)
 		{
 			printf("cant read buttons!");
@@ -43,12 +43,12 @@ int button = 4;
 		}
 
 		if(btn[4] == 0x31)
-            x0-=5;
+			printf("4\n");
 
 
 
 		if(btn[0] == 0x31)
-            break;
+			printf("0\n");
 
 	}
 	close(fd);
