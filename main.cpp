@@ -39,8 +39,9 @@ int main(void)
         return(-1);
     }
 
-	int status, ret;
+	int ret;
     fd_set rds;
+    int key_value;
 
     FD_ZERO(&rds);
     FD_SET(buttons_fd, &rds);
@@ -70,13 +71,6 @@ int main(void)
             else
             {
                 printf("buttons_value: %d\n", key_value);
-            }
-
-            ret = ioctl(fd, BUTTON_IOCTL_GET_STATUS, &status);
-            if (ret < 0)
-            {
-                printf("ioctl invalid status\n");
-                break;
             }
 
         }
