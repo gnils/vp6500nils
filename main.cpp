@@ -94,6 +94,7 @@ int main(void)
 
 	while(true)
 	{
+        yPos += 10;
 
         for(int i = 0; i < 180; i++)
             for(int j = 0; j < 220; j++)
@@ -105,11 +106,11 @@ int main(void)
             }
 
 
-        yPos += 10;
 
         ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
         if (FD_ISSET(buttons_fd, &rds))
         {
+            key_value %= 100;
             ret = read(buttons_fd, &key_value, sizeof key_value);
 
 
@@ -127,7 +128,6 @@ int main(void)
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
                 break;
 
-            //key_value %= 100;
         }
 
 
