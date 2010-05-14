@@ -63,12 +63,12 @@ int main(void)
         {
             int ret = read(buttons_fd, &key_value, sizeof key_value);
 
-            if(key_value > 33666 + 1)
+            if(key_value > 33666 - 1)
             {
                 int keynr = key_value - 33666 + 1;
                 printf("buttons_value: %d\n", keynr);
 
-                if(keynr == 0)
+                if(keynr == 10)
                     break;
             }
 
