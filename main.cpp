@@ -20,6 +20,27 @@
 #define GETPENDETECT(x)   	   ((x&0x100)>>8)
 #define GETEVENT(x) (x&0xFF)
 
+#define BTN_LEFTTOP 33788
+#define BTN_RIGHTTOP 33730
+
+#define BTN_DOWN 33772
+#define BTN_UP 33767
+#define BTN_LEFT 33769
+#define BTN_RIGHT 33770
+
+#define BTN_OK 33780
+
+#define BTN_ACCEPT 33751
+#define BTN_QUIT 33752
+
+#define BTN_NUMBER(x) (x-33666+1)
+#define BTN_NUMBER_ZERO 33657
+
+#define BTN_STAR 33719
+#define BTN_HASH 33748
+
+#define BTN_VIDEO 33728
+#define BTN_LOUPE 33754
 
 int main(void)
 {
@@ -46,42 +67,32 @@ int main(void)
     FD_ZERO(&rds);
     FD_SET(buttons_fd, &rds);
 
+    int offset = 0;
+
 	while(true)
 	{
-        ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
-        if (ret < 0)
-        {
-            printf("select");
-            exit(1);
-        }
+        select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
-        if (ret == 0)
-        {
-            printf("Timeout.\n");
-        }
-        else if (FD_ISSET(buttons_fd, &rds))
+        if (FD_ISSET(buttons_fd, &rds))
         {
             read(buttons_fd, &key_value, sizeof key_value);
 
-            if(key_value > 33666 - 1)
-            {
-                printf("buttons_value: %d\n", key_value);
+            if(key_value == BTN_UP)
+                offset += 10;
 
-                // GET THE NUMBER 0-9
-                //int keynr = key_value - 33666 + 1;
-                //printf("buttons_value: %d\n", keynr);
+            if(key_value == BTN_DOWN)
+                offset -= 10;
 
-                if(key_value - 33657 == 0)
-                    break;
+            if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
+                break;
 
-            }
 
         }
 
 
-        /*for(int i = 0; i < bmp->Width; i++)
+        for(int i = 0; i < bmp->Width; i++)
             for(int j = 0; j < bmp->Height; j++)
-                fb[240*i + j] = bmp->Color[240*i + j];*/
+                fb[240*i + j + offset] = bmp->Color[240*i + j];
 
 	}
 	close(buttons_fd);
