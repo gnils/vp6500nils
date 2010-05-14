@@ -127,7 +127,7 @@ int main(void)
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
                 break;
 
-            key_value %= 100;
+            //key_value %= 100;
         }
 
 
