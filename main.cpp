@@ -67,17 +67,19 @@ int main(void)
     FD_ZERO(&rds);
     FD_SET(buttons_fd, &rds);
 
-    int offset = 0;
+    int xPos = 100;
+    int yPos = 100;
 
 	while(true)
 	{
         for(int i = 0; i < 180; i++)
             for(int j = 0; j < 220; j++)
-                fb[240*j + i] = 0;
-
-        for(int i = 0; i < bmp->Width; i++)
-            for(int j = 0; j < bmp->Height; j++)
-                fb[240*(j+ offset) + i] = bmp->Color[240*j + i];
+            {
+                if(i >= xPos && i < xPos+40 && j >= yPos && j < yPos+40)
+                    fb[240*j + i] = bmp->Color[240*(j-yPos) + (i-xPos)];
+                else
+                    fb[240*j + i] = 0;
+            }
 
         select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
@@ -86,10 +88,16 @@ int main(void)
             read(buttons_fd, &key_value, sizeof key_value);
 
             if(key_value == BTN_UP)
-                offset += 10;
+                xPos += 5;
 
             if(key_value == BTN_DOWN)
-                offset -= 10;
+                xPos -= 5;
+
+            if(key_value == BTN_LEFT)
+                yPos += 5;
+
+            if(key_value == BTN_RIGHT)
+                yPos -= 5;
 
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
                 break;
