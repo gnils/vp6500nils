@@ -87,7 +87,6 @@ int main(void)
 
     printf("Starting MainLoop...\n");
 
-	int ret;
     fd_set rds;
     int key_value;
 
@@ -118,7 +117,7 @@ int main(void)
             if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
                 xPos -= 1;
 
-            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6)
+            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
                 xPos += 1;
 
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
