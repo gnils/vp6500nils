@@ -27,13 +27,13 @@ int main(void)
 
     if(fd == -1)
     {
-        printf("can't open /dev/sensor\r\n");
+        printf("can't open /dev/buttons\r\n");
         return 1;
     }
 
     while(true)
     {
-        int result = getc(fd);
+        int result = getc((FILE*)(fd));
         printf("%d\n", result);
     }
 
