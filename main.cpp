@@ -23,23 +23,33 @@ int button = 4;
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
+    int x0 = 0, y0 = 0;
+
     char btn[6] = {'0', '0', '0', '0', '0', '0'};
 	int fd = open("/dev/buttons", 0);
 	if (fd < 0) { printf("cant open buttons device"); return(-1); }
 
-	while(btn[button] == 0x30) {	// if a button is released, we read 0x30, if pressed 0x31
-		if (read(fd, btn, sizeof btn) != sizeof btn) {
+	while(true)
+	{	// if a button is released, we read 0x30, if pressed 0x31
+		if (read(fd, btn, sizeof btn) != sizeof btn
+		{
 			printf("cant read buttons!");
 			close(fd);
 			return(-1);
 		}
+
+		if(btn[button] != 0x30)
+            x0++;
+
+        y0++;
+
+        for(short x = 0; x < bmp->Width; x++)
+            for(short y = 0; y < bmp->Height; y++)
+                fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];
+
 	}
 	close(fd);
 
-
-	for(short x = 0; x < bmp->Width; x++)
-		for(short y = 0; y < bmp->Height; y++)
-			fb[240 * y + x] = bmp->Color[240 * y + x];
 
 	return 0;
 }
