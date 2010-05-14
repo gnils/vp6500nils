@@ -57,17 +57,23 @@ int main(void)
 	BMP *cube_green = new BMP();
 	BMP *cube_bam = new BMP();
 
+	BMP *bg = new BMP();
+
 	cube_red->ReadFromFile("tetris_red.bmp");
 	cube_blue->ReadFromFile("tetris_blue.bmp");
 	cube_yellow->ReadFromFile("tetris_yellow.bmp");
 	cube_green->ReadFromFile("tetris_green.bmp");
 	cube_bam->ReadFromFile("tetris_bam.bmp");
 
+	bg->ReadFromFile("bg.bmp");
+
     cube_red->GenerateShortArray();
 	cube_blue->GenerateShortArray();
 	cube_yellow->GenerateShortArray();
 	cube_green->GenerateShortArray();
 	cube_bam->GenerateShortArray();
+
+	bg->GenerateShortArray();
 
 
     printf("Opening device: Buttons...\n");
@@ -103,24 +109,24 @@ int main(void)
                 if(i >= xPos && i < xPos+cube_red->Width && j >= yPos && j < yPos+cube_red->Height)
                     fb[240*j + i] = cube_red->Color[240*(j-yPos) + (i-xPos)];
                 else
-                    fb[240*j + i] = 0;
+                    fb[240*j + i] = bg->Color[240*j + i];
             }
 
 
 
         ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
-        if (FD_ISSET(buttons_fd, &rds))
+        //if (FD_ISSET(buttons_fd, &rds))
         {
             key_value %= 100;
             ret = read(buttons_fd, &key_value, sizeof key_value);
 
-            if(key_value == BTN_DOWN)
+            if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
                 yPos += 10;
 
-            if(key_value == BTN_LEFT)
+            if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
                 xPos -= 10;
 
-            if(key_value == BTN_RIGHT)
+            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
                 xPos += 10;
 
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
