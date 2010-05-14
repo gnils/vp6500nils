@@ -65,11 +65,15 @@ int main(void)
 
             if(key_value > 33666 - 1)
             {
-                int keynr = key_value - 33666 + 1;
                 printf("buttons_value: %d\n", keynr);
 
-                if(keynr == 10)
+                // GET THE NUMBER 0-9
+                //int keynr = key_value - 33666 + 1;
+                //printf("buttons_value: %d\n", keynr);
+
+                if(key_value - 33657 == 0)
                     break;
+
             }
 
         }
