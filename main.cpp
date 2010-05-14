@@ -96,7 +96,7 @@ int main(void)
 
     select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
-    int xPos = 150;
+    int xPos = 80;
     int yPos = 0;
 
     key_value %= 100;
@@ -109,17 +109,14 @@ int main(void)
             key_value %= 100;
             read(buttons_fd, &key_value, sizeof key_value);
 
-
-
-
             if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
-                yPos += 10;
+                yPos -= 1;
 
             if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
-                xPos -= 10;
+                xPos += 1;
 
             if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
-                xPos += 10;
+                xPos += 1;
 
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
                 break;
