@@ -32,6 +32,8 @@ int main(void)
     while(true)
     {
         printf("%d\n", fd);
+        if(fd !=4)
+            break;
     }
 
 	for(short x = 0; x < bmp->Width; x++)
