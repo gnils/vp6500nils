@@ -14,6 +14,8 @@
 
 #define GETCFDETECT(x)   	   ((x&0x400)>>10)
 #define GETPENDETECT(x)   	   ((x&0x100)>>8)
+#define GETEVENT(x) (x&0xFF)
+
 
 int main(void)
 {
@@ -44,7 +46,7 @@ int main(void)
             printf("ioctl invalid status\n");
             break;
         }
-        printf("decode status: [P = %x] [CF = %x]\n", GETPENDETECT(status), GETCFDETECT(status));
+        printf("EVENT: %x\n", GETEVENT(status));
 
 
         /*for(int i = 0; i < bmp->Width; i++)
