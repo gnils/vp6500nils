@@ -44,21 +44,49 @@
 
 int main(void)
 {
+    printf("Opening Device: FrameBuffer...\n");
+
 	int fb_nr = open("/dev/fb", O_RDWR);
+	if(fb_nr < 0)
+	{
+        printf("ERROR: Cant open FrameBuffer\n");
+        return(-1);
+    }
+
 	void* fb_void = mmap(0, 2*240*220, PROT_WRITE, MAP_SHARED , fb_nr, 0);
 	short* fb = (short*) fb_void;
 
-	BMP *bmp = new BMP();
+    printf("Loading Bitmaps...\n");
 
-	bmp->ReadFromFile("cube.bmp");
-    bmp->GenerateShortArray();
+	BMP *cube_red = new BMP();
+	BMP *cube_blue = new BMP();
+	BMP *cube_yellow = new BMP();
+	BMP *cube_green = new BMP();
+	BMP *cube_bam = new BMP();
+
+	cube_red->ReadFromFile("tetris_red.bmp");
+	cube_blue->ReadFromFile("tetris_blue.bmp");
+	cube_yellow->ReadFromFile("tetris_yellow.bmp");
+	cube_green->ReadFromFile("tetris_green.bmp");
+	cube_bam->ReadFromFile("tetris_bam.bmp");
+
+    cube_red->GenerateShortArray();
+	cube_blue->GenerateShortArray();
+	cube_yellow->GenerateShortArray();
+	cube_green->GenerateShortArray();
+	cube_bam->GenerateShortArray();
+
+
+    printf("Opening device: Buttons...\n");
 
 	int buttons_fd= open("/dev/buttons", O_RDWR | O_NONBLOCK);
 	if (buttons_fd < 0)
 	{
-        printf("cant open buttons device");
+        printf("ERROR: Cant open Buttons\n");
         return(-1);
     }
+
+    printf("Starting MainLoop...\n");
 
 	int ret;
     fd_set rds;
@@ -70,13 +98,14 @@ int main(void)
     int xPos = 150;
     int yPos = 0;
 
+
 	while(true)
 	{
         for(int i = 0; i < 180; i++)
             for(int j = 0; j < 220; j++)
             {
-                if(i >= xPos && i < xPos+40 && j >= yPos && j < yPos+40)
-                    fb[240*j + i] = bmp->Color[240*(j-yPos) + (i-xPos)];
+                if(i >= xPos && i < xPos+cube_red->Width && j >= yPos && j < yPos+cube_red->Height)
+                    fb[240*j + i] = cube_red->Color[240*(j-yPos) + (i-xPos)];
                 else
                     fb[240*j + i] = 0;
             }
