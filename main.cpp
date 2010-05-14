@@ -6,11 +6,11 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <math.h>
+
 #include "EasyBMP.h"
 
-#define _MODE_565_RGB16BIT(r,g,b) ((b%32) + ((g%64) << 6) + ((r%32) << 11))
+#define BUTTON_IOCTL_GET_STATUS         _IOR( BUTTON_IOCTL_BASE,7,unsigned int)
 
-#define POWER_ON 0x6C07
 int main(void)
 {
 	int fb_nr = open("/dev/fb", O_RDWR);
