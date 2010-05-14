@@ -7,6 +7,10 @@
 #include <sys/ioctl.h>
 #include <math.h>
 
+#include <sys/stat.h>
+#include <sys/select.h>
+#include <errno.h>
+
 #include "EasyBMP.h"
 
 #define BUTTON_IOCTL_BASE               'b'
@@ -28,25 +32,54 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-	int fd = open("/dev/buttons", O_RDWR | O_NONBLOCK);
-	if (fd < 0)
+	int buttons_fd= open("/dev/buttons", O_RDWR | O_NONBLOCK);
+	if (buttons_fd < 0)
 	{
         printf("cant open buttons device");
         return(-1);
     }
 
 	int status, ret;
+    fd_set rds;
+
+    FD_ZERO(&rds);
+    FD_SET(buttons_fd, &rds);
 
 	while(true)
 	{
-
-        ret = ioctl(fd, BUTTON_IOCTL_GET_STATUS, &status);
+        ret = select(buttons_fd + 1, &rds, NULL, NULL, NULL);
         if (ret < 0)
         {
-            printf("ioctl invalid status\n");
-            break;
+            perror("select");
+            exit(1);
         }
-        printf("EVENT: %d\n", (status));
+
+        if (ret == 0)
+        {
+            printf("Timeout.\n");
+        }
+        else if (FD_ISSET(buttons_fd, &rds))
+        {
+            int ret = read(buttons_fd, &key_value, sizeof key_value);
+            if (ret != sizeof key_value)
+            {
+                if (errno != EAGAIN)
+                printf("read buttons\n");
+                continue;
+            }
+            else
+            {
+                printf("buttons_value: %d\n", key_value);
+            }
+
+            ret = ioctl(fd, BUTTON_IOCTL_GET_STATUS, &status);
+            if (ret < 0)
+            {
+                printf("ioctl invalid status\n");
+                break;
+            }
+
+        }
 
 
         /*for(int i = 0; i < bmp->Width; i++)
@@ -54,7 +87,7 @@ int main(void)
                 fb[240*i + j] = bmp->Color[240*i + j];*/
 
 	}
-	close(fd);
+	close(buttons_fd);
 
 
 	return 0;
