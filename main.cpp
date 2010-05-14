@@ -22,8 +22,6 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-    int x0 = 0, y0 = 0;
-
     char btn[6] = {'0', '0', '0', '0', '0', '0'};
 	int fd = open("/dev/buttons", O_RDWR | O_NONBLOCK);
 	if (fd < 0) { printf("cant open buttons device"); return(-1); }
@@ -33,14 +31,14 @@ int main(void)
 	while(true)
 	{
 
-        ret = ioctl(evt_fd, BUTTON_IOCTL_GET_STATUS, &status);
+        ret = ioctl(fd, BUTTON_IOCTL_GET_STATUS, &status);
         if (ret < 0)
         {
             printf("ioctl invalid status\n");
             break;
         }
 
-        printf("%d\n", status)
+        printf("%d\n", status);
 
         /*for(int i = 0; i < bmp->Width; i++)
             for(int j = 0; j < bmp->Height; j++)
