@@ -46,7 +46,7 @@ int main(void)
             printf("ioctl invalid status\n");
             break;
         }
-        printf("EVENT: %x\n", GETEVENT(status));
+        printf("EVENT: %d\n", (status));
 
 
         /*for(int i = 0; i < bmp->Width; i++)
