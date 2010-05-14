@@ -16,9 +16,9 @@
 #define BTN_LEFTTOP 124
 #define BTN_RIGHTTOP 66
 
-#define BTN_DOWN 108
+#define BTN_DOWN 105
 #define BTN_UP 103
-#define BTN_LEFT 105
+#define BTN_LEFT 108
 #define BTN_RIGHT 106
 
 #define BTN_OK 116
@@ -26,7 +26,7 @@
 #define BTN_ACCEPT 87
 #define BTN_QUIT 88
 
-#define BTN_NUMBER(x) (x-1)
+#define BTN_NUMBER(x) (x+1)
 #define BTN_NUMBER_ZERO 11
 
 #define BTN_STAR 55
@@ -110,12 +110,12 @@ int main(void)
             read(buttons_fd, &key_value, sizeof key_value);
 
             if(key_value == BTN_DOWN || key_value == BTN_NUMBER(8))
-                yPos -= 1;
+                yPos += 1;
 
             if(key_value == BTN_LEFT || key_value == BTN_NUMBER(4))
                 xPos += 1;
 
-            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6))
+            if(key_value == BTN_RIGHT || key_value == BTN_NUMBER(6)
                 xPos += 1;
 
             if(key_value == BTN_NUMBER_ZERO || key_value == BTN_QUIT)
