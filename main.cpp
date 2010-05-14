@@ -38,7 +38,7 @@ int main(void)
         printf("%d\n", result);
     }
 
-    close("/dev/buttons");
+    close(fd);
 
 	for(short x = 0; x < bmp->Width; x++)
 		for(short y = 0; y < bmp->Height; y++)
