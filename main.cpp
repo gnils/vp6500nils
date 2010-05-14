@@ -23,7 +23,7 @@ int main(void)
 	bmp->ReadFromFile("cube.bmp");
     bmp->GenerateShortArray();
 
-    int fd = open("/dev/buttons", O_RDWR);
+    FILE* fd = open("/dev/buttons", O_RDWR);
 
     if(fd == -1)
     {
@@ -32,13 +32,13 @@ int main(void)
     }
     printf("%d\n", fd);
 
-    int result = getc((FILE*)(fd));
+    int result = getc(fd);
         printf("%d sd\n", result);
     //while(true)
     //{
     //}
 
-    close(fd);
+    close(FILE);
 
 	for(short x = 0; x < bmp->Width; x++)
 		for(short y = 0; y < bmp->Height; y++)
