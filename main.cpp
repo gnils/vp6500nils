@@ -38,7 +38,7 @@ int button = 4;
 			return(-1);
 		}
 
-		if(btn[4] != 0x30)
+		if(btn[4] != 0x31)
             x0+=5;
 
 
@@ -47,7 +47,7 @@ int button = 4;
                 fb[240 * y + x] = bmp->Color[240 * (y+y0) + (x+x0)];
 
 
-		if(btn[0] != 0x30)
+		if(btn[0] == 0x31)
             x0++;
 
 	}
