@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <sys/mman.h>
 #include <sys/types.h>
+#include <sys/ioctl.h>
 #include <math.h>
 #include "EasyBMP.h"
 
@@ -29,11 +30,11 @@ int main(void)
         printf("can't open /dev/sensor\r\n");
         return 1;
     }
+
     while(true)
     {
-        printf("%d\n", fd);
-        if(fd !=4)
-            break;
+        int result = ioctl(fd, POWER_ON);
+        printf("%d\n", result);
     }
 
 	for(short x = 0; x < bmp->Width; x++)
