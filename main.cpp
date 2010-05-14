@@ -114,7 +114,6 @@ int main(void)
 
 
             printf("%d\n",key_value);
-            key_value %= 100;
 
             if(key_value == BTN_DOWN)
                 yPos += 10;
