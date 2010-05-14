@@ -13,34 +13,27 @@
 
 #include "EasyBMP.h"
 
-#define BUTTON_IOCTL_BASE               'b'
-#define BUTTON_IOCTL_GET_STATUS         _IOR( BUTTON_IOCTL_BASE,7,unsigned int)
+#define BTN_LEFTTOP 88
+#define BTN_RIGHTTOP 30
 
-#define GETCFDETECT(x)   	   ((x&0x400)>>10)
-#define GETPENDETECT(x)   	   ((x&0x100)>>8)
-#define GETEVENT(x) (x&0xFF)
+#define BTN_DOWN 72
+#define BTN_UP 67
+#define BTN_LEFT 69
+#define BTN_RIGHT 70
 
-#define BTN_LEFTTOP 33788
-#define BTN_RIGHTTOP 33730
+#define BTN_OK 80
 
-#define BTN_DOWN 33772
-#define BTN_UP 33767
-#define BTN_LEFT 33769
-#define BTN_RIGHT 33770
+#define BTN_ACCEPT 51
+#define BTN_QUIT 52
 
-#define BTN_OK 33780
+#define BTN_NUMBER(x) (x-66+1)
+#define BTN_NUMBER_ZERO 75
 
-#define BTN_ACCEPT 33751
-#define BTN_QUIT 33752
+#define BTN_STAR 19
+#define BTN_HASH 48
 
-#define BTN_NUMBER(x) (x-33666+1)
-#define BTN_NUMBER_ZERO 33675
-
-#define BTN_STAR 33719
-#define BTN_HASH 33748
-
-#define BTN_VIDEO 33728
-#define BTN_LOUPE 33754
+#define BTN_VIDEO 28
+#define BTN_LOUPE 54
 
 int main(void)
 {
@@ -120,7 +113,9 @@ int main(void)
             ret = read(buttons_fd, &key_value, sizeof key_value);
 
 
-    printf("%d\n",key_value);
+            printf("%d\n",key_value);
+            key_value %= 100;
+
             if(key_value == BTN_DOWN)
                 yPos += 10;
 
