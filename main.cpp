@@ -9,6 +9,7 @@
 
 #include "EasyBMP.h"
 
+#define BUTTON_IOCTL_BASE               'b'
 #define BUTTON_IOCTL_GET_STATUS         _IOR( BUTTON_IOCTL_BASE,7,unsigned int)
 
 int main(void)
