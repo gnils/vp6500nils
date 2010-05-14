@@ -10,7 +10,7 @@
 
 #define _MODE_565_RGB16BIT(r,g,b) ((b%32) + ((g%64) << 6) + ((r%32) << 11))
 
-
+#define POWER_ON 0x6C07
 int main(void)
 {
 	int fb_nr = open("/dev/fb", O_RDWR);
@@ -33,7 +33,7 @@ int main(void)
 
     while(true)
     {
-        int result = ioctl(fd, POWER_ON);
+        int result = getc(fd);
         printf("%d\n", result);
     }
 
