@@ -75,6 +75,7 @@ int main(void)
                 write(buttons_fd, &key_value, 1);
 
             close(buttons_fd);
+        printf("asd\n");
 /*
     printf("Loading Bitmaps...\n");
 
