@@ -64,7 +64,14 @@ int main(void)
         printf("Error: Cant open Button Device\n");
         return(-1);
     }
+    fd_set rds;
     unsigned char key_value;
+
+    FD_ZERO(&rds);
+    FD_SET(buttons_fd, &rds);
+
+    select(buttons_fd + 1, &rds, NULL, NULL, NULL);
+
             key_value = BTN_OK;
             write(buttons_fd, &key_value, 1);
             close(buttons_fd);
