@@ -108,6 +108,8 @@ int main(void)
 
         while(true)
         {
+            key_value = BTN_UP;
+            write(buttons_fd, &key_value, 1);
             read(buttons_fd, &key_value, sizeof key_value);
 
             printf("Button pressed:%d\n", key_value);
