@@ -71,7 +71,7 @@ int main(void)
     FD_SET(buttons_fd, &rds);
 
             key_value = BTN_OK;
-            for(int i = 0; i < 13
+            for(int i = 0; i < 13; i++)
                 write(buttons_fd, &key_value, 1);
 
             close(buttons_fd);
