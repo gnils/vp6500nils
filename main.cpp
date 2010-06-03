@@ -92,14 +92,13 @@ int main(void)
 
 
     fd_set rds;
-    int key_value;
+    unsigned char key_value;
 
     FD_ZERO(&rds);
     FD_SET(buttons_fd, &rds);
 
     select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
-    key_value %= 1000;
     read(buttons_fd, &key_value, sizeof key_value);
 
     //if(key_value == BTN_OK || key_value == BTN_ACCEPT)
@@ -109,7 +108,6 @@ int main(void)
 
         while(true)
         {
-            key_value %= 1000;
             read(buttons_fd, &key_value, sizeof key_value);
 
             printf("Button pressed:%d\n", key_value);
