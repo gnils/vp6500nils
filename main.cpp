@@ -67,6 +67,7 @@ int main(void)
     unsigned char key_value;
             key_value = BTN_OK;
             write(buttons_fd, &key_value, 1);
+            close(buttons_fd);
 /*
     printf("Loading Bitmaps...\n");
 
