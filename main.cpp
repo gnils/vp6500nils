@@ -64,7 +64,10 @@ int main(void)
         printf("Error: Cant open Button Device\n");
         return(-1);
     }
-
+    unsigned char key_value;
+            key_value = BTN_OK;
+            write(buttons_fd, &key_value, 1);
+/*
     printf("Loading Bitmaps...\n");
 
 	BMP *start = new BMP();
@@ -155,6 +158,6 @@ int main(void)
 	close(buttons_fd);
 	close(fb_nr);
 
-
+*/
 	return 0;
 }
