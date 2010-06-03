@@ -70,8 +70,10 @@ int main(void)
     FD_ZERO(&rds);
     FD_SET(buttons_fd, &rds);
 
+        printf("1\n");
     select(buttons_fd + 1, &rds, NULL, NULL, NULL);
 
+        printf("2\n");
             key_value = BTN_OK;
             write(buttons_fd, &key_value, 1);
             close(buttons_fd);
